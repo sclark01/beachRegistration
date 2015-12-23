@@ -2,4 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Enter your info so we can add you to #{title}
+  form(name="register", method="post")
+        div.input
+            span.label Name
+            input(type="text", name="name")
+        div.input
+            span.label Likes
+            textarea(name="likes", cols="40", rows="5")
+        div.input 
+            span.label Skills
+            textarea(name="skills", cols="40", rows"5")
+        div.actions
+            input(type="submit", value="add")
