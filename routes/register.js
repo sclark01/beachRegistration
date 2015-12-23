@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Beacher = require('../models/beacher');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,12 +8,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
-	response = {
+	Beacher.create({
 		name: req.body.name,
 		likes: req.body.likes,
 		skills: req.body.skills
-	};
-  	res.render('success', response);
+	}, function(err, beacher){
+		if(err){
+			res.send(err);
+		}
+		Beacher.find(function(err, beachers){
+			if(err){
+				res.send(err);
+			}
+			res.json(beachers);
+		});
+
+	});
 });
 
 module.exports = router;
