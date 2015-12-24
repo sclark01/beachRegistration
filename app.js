@@ -12,6 +12,7 @@ var database = require('./config/database');
 
 console.log("connecting to db...");
 mongoose.connect(database.url);
+console.log("connected to db");
 
 var app = express();
 
